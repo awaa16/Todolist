@@ -55,7 +55,7 @@ export async function tambahtodolist(nama, prioritas, status, tanggal) {
       nama: nama,
       prioritas: prioritas,
       status: status,
-      tanggal: tanggal,
+      tanggal: tanggal
       
     });
     console.log('Berhasil menambah todolist' + dokRef.id);

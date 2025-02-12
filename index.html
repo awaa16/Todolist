@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <h1>📌 To-Do List</h1>
-
+    
     <div class="input-container">
       <input type="text" id="taskInput" placeholder="Tambah tugas...">
       <select id="priority">
@@ -21,34 +21,34 @@
         <option value="Sedang">⚡ Sedang</option>
         <option value="Rendah">💤 Rendah</option>
       </select>
-      <input type="date" id="dateInput">
-      <button onclick="addTask()">Tambah</button>
+      <input type="text" id="tanggal">
+      <button type="submit" class="btn btn-primary" id="tambah">Simpan</button>
     </div>
-
-    <ul id="taskList"></ul>
+    
+    
   </div>
-
-  <script src="script.js"></script>
   
-    <script type="module">
+  
+  
+  <script type="module">
     import { tambahtodolist } from './main.js';
-
+    
     let tombolTambah = document.getElementById('tambah')
-    let elemenNama = document.getElementById('input-nama');
-    let elemenprioritas = document.getElementById('input-prioritas');
-    let elemenstatus = document.getElementById('input-status');
-    let elementanggal = document.getElementById('input-tanggal');
-
-
-
+    let elemenNama = document.getElementById('taskInput');
+    let elemenprioritas = document.getElementById('priority');
+  //  let elemenstatus = document.getElementById('input-status');
+    let elementanggal = document.getElementById('tanggal');
+    
+    
+    
     tombolTambah.addEventListener('click', async function(e) {
       e.preventDefault();
-
-
-      await tambahtodolist(elemenNama.value, elemenprioritas.value, elemenstatua.value,elementanggal.value, );
-
-      window.location.href = 'index.html';
-
+      
+      
+      await tambahtodolist(elemenNama.value, elemenprioritas.value, elementanggal.value);
+      
+      //window.location.href = 'index.html';
+      
     });
   </script>
 </body>
