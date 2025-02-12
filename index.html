@@ -29,6 +29,28 @@
   </div>
 
   <script src="script.js"></script>
+  
+    <script type="module">
+    import { tambahtodolist } from './main.js';
+
+    let tombolTambah = document.getElementById('tambah')
+    let elemenNama = document.getElementById('input-nama');
+    let elemenprioritas = document.getElementById('input-prioritas');
+    let elemenstatus = document.getElementById('input-status');
+    let elementanggal = document.getElementById('input-tanggal');
+
+
+
+    tombolTambah.addEventListener('click', async function(e) {
+      e.preventDefault();
+
+
+      await tambahtodolist(elemenNama.value, elemenprioritas.value, elemenstatua.value,elementanggal.value, );
+
+      window.location.href = 'index.html';
+
+    });
+  </script>
 </body>
 
 </html>
