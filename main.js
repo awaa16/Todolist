@@ -48,13 +48,12 @@ export function formatAngka(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahtodolist(nama, prioritas, status, tanggal) {
+export async function tambahtodolist(nama, prioritas, tanggal) {
   try {
     const dokRef = await addDoc(collection(db, 'todolist'), {
 
       nama: nama,
       prioritas: prioritas,
-      status: status,
       tanggal: tanggal
       
     });
