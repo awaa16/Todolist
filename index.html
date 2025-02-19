@@ -1,82 +1,92 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Syalwa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #001f3f;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            color: #ffcc00;
-        }
-        input, select {
-            padding: 10px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #ffcc00;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ffd700;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #003366;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .status {
-            margin-left: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List Syalwa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #001f3f;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #ffcc00;
+    }
+    
+    input,
+    select {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+    
+    button {
+      padding: 10px 15px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #ffd700;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    li {
+      background-color: #003366;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .status {
+      margin-left: 10px;
+    }
+  </style>
 </head>
+
 <body>
-
-    <h1>To-Do List Astronot</h1>
-    <input type="text" id="taskInput" placeholder="Tugas baru...">
-    <input type="date" id="dateInput">
-    <select id="priorityInput">
-        <option value="Tinggi">Tinggi</option>
-        <option value="Sedang">Sedang</option>
-        <option value="Rendah">Rendah</option>
-    </select>
-    <button onclick="addTask()">Tambah Tugas</button>
-
-    <ul id="taskList"></ul>
-
-    <script>
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const dateInput = document.getElementById('dateInput');
-            const priorityInput = document.getElementById('priorityInput');
-            const taskList = document.getElementById('taskList');
-
-            if (taskInput.value === '') {
-                alert('Masukkan tugas!');
-                return;
-            }
-
-            const li = document.createElement('li');
-            li.innerHTML = `
+  
+  <h1>To-Do List syalwa </h1>
+  <input type="text" id="taskInput" placeholder="Tugas baru...">
+  <input type="date" id="dateInput">
+  <select id="priorityInput">
+    <option value="Tinggi">Tinggi😘</option>
+    <option value="Sedang">Sedang😚</option>
+    <option value="Rendah">Rendah😗</option>
+  </select>
+  <button onclick="addTask()">Tambah Tugas</button>
+  
+  <ul id="taskList"></ul>
+  
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('taskInput');
+      const dateInput = document.getElementById('dateInput');
+      const priorityInput = document.getElementById('priorityInput');
+      const taskList = document.getElementById('taskList');
+      
+      if (taskInput.value === '') {
+        alert('Masukkan tugas!');
+        return;
+      }
+      
+      const li = document.createElement('li');
+      li.innerHTML = `
                 <span>${taskInput.value} - ${dateInput.value} - ${priorityInput.value}</span>
                 <div>
                     <button onclick="editTask(this)">Ubah</button>
@@ -88,38 +98,39 @@
                     </select>
                 </div>
             `;
-            taskList.appendChild(li);
-
-            taskInput.value = '';
-            dateInput.value = '';
-            priorityInput.value = 'Tinggi';
-        }
-
-        function deleteTask(button) {
-            const li = button.parentElement.parentElement;
-            li.remove();
-        }
-
-        function editTask(button) {
-            const li = button.parentElement.parentElement;
-            const taskDetails = li.firstChild.textContent.split(' - ');
-            const taskInput = document.getElementById('taskInput');
-            const dateInput = document.getElementById('dateInput');
-            const priorityInput = document.getElementById('priorityInput');
-
-            taskInput.value = taskDetails[0];
-            dateInput.value = taskDetails[1];
-            priorityInput.value = taskDetails[2];
-
-            li.remove();
-        }
-
-        function updateStatus(select) {
-            const li = select.parentElement.parentElement;
-            const status = select.value;
-            li.firstChild.textContent = li.firstChild.textContent.split(' - ')[0] + ' - ' + status;
-        }
-    </script>
-
+      taskList.appendChild(li);
+      
+      taskInput.value = '';
+      dateInput.value = '';
+      priorityInput.value = 'Tinggi';
+    }
+    
+    function deleteTask(button) {
+      const li = button.parentElement.parentElement;
+      li.remove();
+    }
+    
+    function editTask(button) {
+      const li = button.parentElement.parentElement;
+      const taskDetails = li.firstChild.textContent.split(' - ');
+      const taskInput = document.getElementById('taskInput');
+      const dateInput = document.getElementById('dateInput');
+      const priorityInput = document.getElementById('priorityInput');
+      
+      taskInput.value = taskDetails[0];
+      dateInput.value = taskDetails[1];
+      priorityInput.value = taskDetails[2];
+      
+      li.remove();
+    }
+    
+    function updateStatus(select) {
+      const li = select.parentElement.parentElement;
+      const status = select.value;
+      li.firstChild.textContent = li.firstChild.textContent.split(' - ')[0] + ' - ' + status;
+    }
+  </script>
+  
 </body>
+
 </html>
