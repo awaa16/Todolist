@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #001f3f;
+      background-color: darkslateblue;
       color: #ffffff;
       text-align: center;
       padding: 20px;
@@ -69,8 +69,8 @@
     <option value="Sedang">Sedang😚</option>
     <option value="Rendah">Rendah😗</option>
   </select>
-  <button onclick="addTask()">Tambah Tugas</button>
-  
+ 
+  <button type="submit" class="btn btn-primary" id="tambah">Simpan</button>
   <ul id="taskList"></ul>
   
   <script>
@@ -105,10 +105,6 @@
       priorityInput.value = 'Tinggi';
     }
     
-    function deleteTask(button) {
-      const li = button.parentElement.parentElement;
-      li.remove();
-    }
     
     function editTask(button) {
       const li = button.parentElement.parentElement;
@@ -123,12 +119,25 @@
       
       li.remove();
     }
+  </script>
+  <script type="module">
+    import { tambahtodolist } from './main.js';
+    let tombolTambah = document.getElementById('tombolTambah')
+    let taskDetails = document.getElementById('taskDetails')
+    let taskInput = document.getElementById('taskInput');
+    let dateInput = document.getElementById('dateInput');
+    let priorityInput = document.getElementById('priorityInput');
     
-    function updateStatus(select) {
-      const li = select.parentElement.parentElement;
-      const status = select.value;
-      li.firstChild.textContent = li.firstChild.textContent.split(' - ')[0] + ' - ' + status;
-    }
+    
+    tombolTambah.addEventListener('click', async function(e) {
+      e.preventDefault();
+      
+      
+      await tambahtodolist (taskDetails.value, taskInput.value, dateInput.value, priorityInput.value, );
+      
+      window.location.href = 'index.html.html';
+      
+    });
   </script>
   
 </body>
