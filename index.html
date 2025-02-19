@@ -122,8 +122,7 @@
   </script>
   <script type="module">
     import { tambahtodolist } from './main.js';
-    let tombolTambah = document.getElementById('tombolTambah')
-    let taskDetails = document.getElementById('taskDetails')
+    let tombolTambah = document.getElementById('tambah')
     let taskInput = document.getElementById('taskInput');
     let dateInput = document.getElementById('dateInput');
     let priorityInput = document.getElementById('priorityInput');
@@ -133,9 +132,9 @@
       e.preventDefault();
       
       
-      await tambahtodolist (taskDetails.value, taskInput.value, dateInput.value, priorityInput.value, );
+      await tambahtodolist (taskInput.value, dateInput.value, priorityInput.value);
       
-      window.location.href = 'index.html.html';
+     // window.location.href = 'index.html.html';
       
     });
   </script>
