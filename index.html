@@ -65,9 +65,9 @@
   <input type="text" id="taskInput" placeholder="Tugas baru...">
   <input type="date" id="dateInput">
   <select id="priorityInput">
-    <option value="Tinggi">Tinggi😘</option>
-    <option value="Sedang">Sedang😚</option>
-    <option value="Rendah">Rendah😗</option>
+    <option value="Tinggi">Tinggi🦸</option>
+    <option value="Sedang">Sedang🦹</option>
+    <option value="Rendah">Rendah🧌</option>
   </select>
  
   <button type="submit" class="btn btn-primary" id="tambah">Simpan</button>
@@ -121,22 +121,55 @@
     }
   </script>
   <script type="module">
-    import { tambahtodolist } from './main.js';
-    let tombolTambah = document.getElementById('tambah')
-    let taskInput = document.getElementById('taskInput');
-    let dateInput = document.getElementById('dateInput');
-    let priorityInput = document.getElementById('priorityInput');
-    
-    
-    tombolTambah.addEventListener('click', async function(e) {
-      e.preventDefault();
-      
-      
-      await tambahtodolist (taskInput.value, priorityInput.value,dateInput.value);
-      
-     // window.location.href = 'index.html.html';
-      
-    });
+    import { tambahtodolist,ambildaftartodolist,hapustodolist} from './main.js';
+    async function tampilkanTodolist() {
+  const todolist = await ambildaftartodolist();
+  const taskList = document.getElementById('taskList');
+  
+  // Kosongkan daftar sebelum menambahkan data baru
+  taskList.innerHTML = '';
+  
+  todolist.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+          <span>${item.nama} - Prioritas: ${item.prioritas} - Status: ${item.status} - Tanggal: ${item.tanggal}</span>
+          <div>
+              <button onclick="editTask(this)">Ubah</button>
+              <button onclick="deleteTask(this,'${item.id}')">Hapus</button>
+              <select class="status" onchange="updateStatus(this)">
+                  <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+                  <option value="Sudah Dikerjakan">Sudah Dikerjakan</option>
+                  <option value="Selesai">Selesai</option>
+              </select>
+          </div>
+        `;
+    taskList.appendChild(li);
+  });
+}
+window.deleteTask = async function(docId) {
+      if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+        try {
+       await hapustodolist(docId);
+          tampilkanTodolist(); // Memperbarui tampilan setelah menghapus tugas
+        }catch(error) {
+          console.error('Gagal menghapus tugas:', error);
+        }
+      }
+    };
+
+// Panggil fungsi untuk menampilkan data saat halaman dimuat
+window.onload = tampilkanTodolist;
+
+let tombolTambah = document.getElementById('tambah');
+let taskInput = document.getElementById('taskInput');
+let dateInput = document.getElementById('dateInput');
+let priorityInput = document.getElementById('priorityInput');
+
+tombolTambah.addEventListener('click', async function(e) {
+  e.preventDefault();
+  await tambahtodolist(taskInput.value, priorityInput.value, dateInput.value);
+  tampilkanTodolist(); // Memperbarui tampilan setelah menambah tugas
+});
   </script>
   
 </body>
