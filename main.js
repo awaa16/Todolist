@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
 import {
+
   getFirestore,
   collection,
   addDoc,
@@ -25,7 +27,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function ambildaftartodolist () {
+export async function ambildaftartodolist() {
   const refDokumen = collection(db, "todolist");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
@@ -44,18 +46,13 @@ export async function ambildaftartodolist () {
   return hasil;
 }
 
-export function formatAngka(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
 export async function tambahtodolist(nama, prioritas, tanggal) {
   try {
     const dokRef = await addDoc(collection(db, 'todolist'), {
-
       nama: nama,
       prioritas: prioritas,
-      tanggal: tanggal
-      
+      tanggal: tanggal,
+      status: 'Belum Dikerjakan'
     });
     console.log('Berhasil menambah todolist' + dokRef.id);
   } catch (e) {
@@ -63,21 +60,22 @@ export async function tambahtodolist(nama, prioritas, tanggal) {
   }
 }
 
-
 export async function hapustodolist(docid) {
   await deleteDoc(doc(db, "todolist", docid));
 }
-export async function ubahtodolist(docId, nama, alamat, nohp) {
-  await updateDoc(doc(db, "member", docId), {
+
+export async function ubahtodolist(docId, nama, prioritas, tanggal, status) {
+  await updateDoc(doc(db, "todolist", docId), {
     nama: nama,
-    alamat:alamat,
-    nohp: nohp,
+    prioritas: prioritas,
+    tanggal: tanggal,
+    status: status
   });
 }
 
 export async function ambiltodolist(docId) {
-  const docRef = await doc(db, "todolist", docId);
+  const docRef = doc(db, "todolist", docId);
   const docSnap = await getDoc(docRef);
 
-  return await docSnap.data();
+  return docSnap.data();
 }
