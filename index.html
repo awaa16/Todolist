@@ -64,12 +64,13 @@
   <h1>To-Do List Syalwa</h1>
   <input type="text" id="taskInput" placeholder="Tugas baru...">
   <input type="date" id="dateInput">
+  
   <select id="priorityInput">
     <option value="Tinggi">Tinggi🔴</option>
     <option value="Sedang">Sedang🟡</option>
     <option value="Rendah">Rendah🟢</option>
   </select>
- 
+  
   <button type="submit" class="btn btn-primary" id="tambah">Simpan</button>
   <ul id="taskList"></ul>
   
@@ -79,7 +80,7 @@
     
     let editMode = false;
     let editDocId = null;
-
+    
     async function addTask() {
       const taskInput = $('#taskInput').val();
       const dateInput = $('#dateInput').val();
@@ -89,7 +90,18 @@
         alert('Masukkan tugas!');
         return;
       }
-      
+      if (dateInput === '') {
+        
+        alert('Masukkan tanggal!');
+        
+        return;
+      }
+      if (priorityInput === '') {
+        
+        alert('Masukkan Priority!');
+        
+        return;
+      }
       if (editMode) {
         // Update existing task
         await ubahtodolist(editDocId, taskInput, priorityInput, dateInput, false);
@@ -114,7 +126,7 @@
       
       window.location.href = `ubah.html?docId=${docId}&nama=${nama}&prioritas=${prioritas}&tanggal=${tanggal}&status=${status}`;
     }
-
+    
     async function updateStatus(select) {
       const li = $(select).closest('li');
       const docId = li.data('id');
@@ -129,7 +141,7 @@
         alert('Gagal memperbarui status. Pastikan ID dokumen benar dan ada di database.');
       }
     }
-
+    
     function resetForm() {
       $('#taskInput').val('');
       $('#dateInput').val('');
@@ -138,7 +150,7 @@
       editMode = false;
       editDocId = null;
     }
-
+    
     async function tampilkanTodolist() {
       const todolist = await ambildaftartodolist();
       const taskList = $('#taskList');
@@ -177,14 +189,14 @@
         }
       }
     };
-
+    
     window.onload = tampilkanTodolist;
-
+    
     $('#tambah').on('click', function(e) {
       e.preventDefault();
       addTask();
     });
-
+    
     window.editTask = editTask;
     window.addTask = addTask;
     window.updateStatus = updateStatus;
