@@ -84,7 +84,23 @@
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Aksi</th>
     </tr>
   </thead>
-  <tbody id="taskBody"></tbody>
+  <tbody id="taskBody">
+    <tr>
+      <td>Nama Tugas</td>
+      <td>Prioritas</td>
+      <td>
+        <select class="status">
+          <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+          <option value="Selesai">Selesai</option>
+        </select>
+      </td>
+      <td>Tanggal</td>
+      <td>
+        <button onclick="editTask(this, 'docId')">Ubah</button>
+        <button onclick="deleteTask(this, 'docId')">Hapus</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h2 style="color: #ffcc00; margin-top: 40px;">Tugas Selesai</h2>
@@ -138,16 +154,20 @@
   resetForm();
 }    
     function editTask(button, docId) {
-      const li = $(button).closest('li');
-      const taskDetails = li.find('span').text().split(' - ');
-      
-      const nama = taskDetails[0];
-      const prioritas = taskDetails[1].split(': ')[1];
-      const tanggal = taskDetails[3].split(': ')[1];
-      const status = taskDetails[2].split(': ')[1];
-      
-      window.location.href = `ubah.html?docId=${docId}&nama=${nama}&prioritas=${prioritas}&tanggal=${tanggal}&status=${status}`;
-    }
+  const row = $(button).closest('tr'); // Cari baris tabel terkait tombol
+  const nama = row.find('td:nth-child(1)').text(); // Ambil teks dari kolom pertama
+  const prioritas = row.find('td:nth-child(2)').text(); // Ambil teks dari kolom kedua
+  const tanggal = row.find('td:nth-child(4)').text(); // Ambil teks dari kolom keempat
+  const status = row.find('select.status').val(); // Ambil nilai dari dropdown status
+
+  if (!nama || !prioritas || !tanggal) {
+    alert('Data tugas tidak ditemukan atau tidak valid.');
+    return;
+  }
+
+  // Redirect ke halaman ubah dengan parameter
+  window.location.href = `ubah.html?docId=${docId}&nama=${nama}&prioritas=${prioritas}&tanggal=${tanggal}&status=${status}`;
+}
     
     async function updateStatus(select) {
   const row = $(select).closest('tr');
