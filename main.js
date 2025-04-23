@@ -46,15 +46,15 @@ export async function ambildaftartodolist() {
   return hasil;
 }
 
-export async function tambahtodolist(nama, prioritas, tanggal) {
+export async function tambahtodolist(nama, prioritas, tanggal, status = false) {
   try {
     const dokRef = await addDoc(collection(db, 'todolist'), {
       nama: nama,
       prioritas: prioritas,
       tanggal: tanggal,
-      status: 'Belum Dikerjakan'
+      status: status // default ke false (Belum Dikerjakan)
     });
-    console.log('Berhasil menambah todolist' + dokRef.id);
+    console.log('Berhasil menambah todolist ' + dokRef.id);
   } catch (e) {
     console.log('Gagal menambah todolist ' + e);
   }
