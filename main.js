@@ -64,13 +64,52 @@ export async function hapustodolist(docid) {
   await deleteDoc(doc(db, "todolist", docid));
 }
 
+// Fungsi untuk memperbarui status saja
+export async function updateStatus(docId, status) {
+  try {
+    await updateDoc(doc(db, "todolist", docId), {
+      status: status
+    });
+    console.log(`Status berhasil diperbarui untuk docId: ${docId}`);
+  } catch (error) {
+    console.error(`Gagal memperbarui status: ${error}`);
+  }
+}
+
+// Fungsi untuk memperbarui seluruh data
 export async function ubahtodolist(docId, nama, prioritas, tanggal, status) {
-  await updateDoc(doc(db, "todolist", docId), {
-    nama: nama,
-    prioritas: prioritas,
-    tanggal: tanggal,
-    status: status
-  });
+  try {
+    // Validasi status sebelum memperbarui
+    const docRef = doc(db, "todolist", docId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const dataLama = docSnap.data();
+
+      // Cegah perubahan langsung dari "Belum Dikerjakan" ke "Selesai"
+      if (dataLama.status === "Belum Dikerjakan" && status === "Selesai") {
+        console.error("Status tidak dapat langsung diubah ke 'Selesai' dari 'Belum Dikerjakan'.");
+        return;
+      }
+
+      // Jika status tidak diubah, gunakan status lama
+      if (status === "" || status === dataLama.status) {
+        status = dataLama.status;
+      }
+    }
+
+    // Perbarui dokumen
+    await updateDoc(docRef, {
+      nama: nama,
+      prioritas: prioritas,
+      tanggal: tanggal,
+      status: status
+    });
+
+    console.log(`Data berhasil diperbarui untuk docId: ${docId}`);
+  } catch (error) {
+    console.error(`Gagal memperbarui data: ${error}`);
+  }
 }
 
 export async function ambiltodolist(docId) {
