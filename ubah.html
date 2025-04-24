@@ -2,106 +2,138 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ubah To-Do List</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: darkslateblue;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-    }
-    
-    h1 {
-      color: #ffcc00;
-    }
-    
-    input,
-    select {
-      padding: 10px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-    }
-    
-    button {
-      padding: 10px 15px;
-      background-color: #ffcc00;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    
-    button:hover {
-      background-color: #ffd700;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubah To-Do List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: darkslateblue;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ffcc00;
+    }
+
+    input,
+    select {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+    }
+  </style>
 </head>
 
 <body class="m-4">
-  <h1>Ubah To-Do List</h1>
+  <h1>Ubah To-Do List</h1>
 
-  <form class="mb-3">
-    <div class="mb-3">
-      <label class="form-label">Tugas</label>
-      <input type="text" class="form-control" id="input-tugas">
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Status</label>
-      <select class="form-control" id="input-status">
-        <option value="Belum Dikerjakan">Belum Dikerjakan</option>
-        <option value="Sudah Dikerjakan">Sudah Dikerjakan</option>
-        <option value="Selesai">Selesai</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Prioritas</label>
-      <select class="form-control" id="input-prioritas">
-        <option value="Tinggi">Tinggi🦸</option>
-        <option value="Sedag">Sedang🦹</option>
-        <option value="Rendah">Rendah🧌</option
-      </select>
-    </div>
-    <div class="mb-3"
-    >
-      <label class="form-label">Tanggal</label>
-      <input type="date" class="form-control" id="input-tanggal">
-    </div>
-    <button type="submit" class="btn btn-primary" id="tombol-ubah">Ubah</button>
-  </form>
+  <form class="mb-3" id="form-ubah">
+    <div class="mb-3">
+      <label class="form-label" for="input-tugas">Tugas</label>
+      <input type="text" class="form-control" id="input-tugas" name="tugas" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="input-status">Status</label>
+      <select class="form-control" id="input-status" name="status" required>
+        <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+        <option value="Sudah Dikerjakan">Sudah Dikerjakan</option>
+        <option value="Selesai">Selesai</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="input-prioritas">Prioritas</label>
+      <select class="form-control" id="input-prioritas" name="prioritas" required>
+        <option value="Tinggi">Tinggi🦸</option>
+        <option value="Sedang">Sedang🦹</option>
+        <option value="Rendah">Rendah🧌</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="input-tanggal">Tanggal</label>
+      <input type="date" class="form-control" id="input-tanggal" name="tanggal" required>
+    </div>
+    <button type="button" class="btn btn-primary" id="tombol-ubah">Ubah</button>
+  </form>
 
-  <script type="module">
-    import { ambiltodolist, ubahtodolist } from './main.js';
+  <script type="module">
+    import { ambiltodolist, ubahtodolist } from './main.js';
 
-    let tombolUbah = document.getElementById('tombol-ubah');
-    let elemenTugas = document.getElementById('input-tugas');
-    let elemenStatus = document.getElementById('input-status');
-    let elemenPrioritas = document.getElementById('input-prioritas');
-    let elemenTanggal = document.getElementById('input-tanggal');
-    const queryString = window.location.search;
-    const parameterURL = new URLSearchParams(queryString);
-    const docId = parameterURL.get('docId');
-    const nama = parameterURL.get('nama');
-    const prioritas = parameterURL.get('prioritas');
-    const tanggal = parameterURL.get('tanggal');
-    const status = parameterURL.get('status');
+    const tombolUbah = document.getElementById('tombol-ubah');
+    const elemenTugas = document.getElementById('input-tugas');
+    const elemenStatus = document.getElementById('input-status');
+    const elemenPrioritas = document.getElementById('input-prioritas');
+    const elemenTanggal = document.getElementById('input-tanggal');
 
-    elemenTugas.value = nama;
-    elemenStatus.value = status;
-    elemenPrioritas.value = prioritas;
-    elemenTanggal.value = tanggal;
+    const queryString = window.location.search;
+    const parameterURL = new URLSearchParams(queryString);
+    const docId = parameterURL.get('docId');
+    const nama = parameterURL.get('nama');
+    const prioritas = parameterURL.get('prioritas');
+    const tanggal = parameterURL.get('tanggal');
+    const status = parameterURL.get('status');
 
-    tombolUbah.addEventListener('click', async function(e) {
-      e.preventDefault();
-      await ubahtodolist(docId, elemenTugas.value, elemenPrioritas.value, elemenTanggal.value, elemenStatus.value);
-      window.location.href = 'index.html';
-    });
-  </script>
+    // Set nilai awal elemen berdasarkan parameter URL
+    elemenTugas.value = nama || '';
+    elemenStatus.value = status || 'Belum Dikerjakan';
+    elemenPrioritas.value = prioritas || 'Sedang';
+    elemenTanggal.value = tanggal || '';
+
+    tombolUbah.addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      // Validasi input
+      if (!elemenTugas.value || !elemenTanggal.value) {
+        alert('Semua field harus diisi!');
+        return;
+      }
+
+      // Ambil nilai status baru dari elemen input
+      const statusInput = elemenStatus.value;
+
+      // Tetapkan status ke default jika tidak diubah
+      let statusBaru = status; // Default ke status lama
+      if (statusInput !== status && statusInput !== "") {
+        statusBaru = statusInput; // Perbarui hanya jika diubah
+      }
+
+      // Pastikan status tidak berubah otomatis ke "Selesai"
+      if (status === "Belum Dikerjakan" && statusBaru === "Selesai") {
+        alert("Status tidak dapat langsung diubah ke 'Selesai' dari 'Belum Dikerjakan'.");
+        return;
+      }
+
+      // Panggil fungsi ubah
+      await ubahtodolist(
+        docId,
+        elemenTugas.value,
+        elemenPrioritas.value,
+        elemenTanggal.value,
+        statusBaru // Gunakan status yang diperiksa
+      );
+
+      // Redirect ke halaman utama
+      window.location.href = 'index.html';
+    });
+  </script>
 </body>
 
 </html>
